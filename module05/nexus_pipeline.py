@@ -4,22 +4,31 @@ from typing import Any, Union, Protocol, Dict, List
 
 class ProcessingStage(Protocol):
     def process(self, data: Any) -> Any:
-        pass
+        ...
 
 
 class InputStage():
     def process(self, data: Any) -> Dict:
-        pass
+        return (dict(data))
 
 
 class TransformStage():
-    def process(self, data: Any) -> Dict:
-        pass
+    pass
 
 
 class OutputStage():
     def process(self, data: Any) -> str:
         pass
+
+
+class Pipeline():
+    def __init__(self, stages: List[ProcessingStage]) -> None:
+        self.stages = stages
+
+    def run(self, data: Any):
+        for stage in self.stages:
+            stage.process(data)
+        return (data)
 
 
 class ProcessingPipeline(ABC):
@@ -34,7 +43,7 @@ class ProcessingPipeline(ABC):
         pass
 
 
-class JSONAdapter():
+class JSONAdapter(ProcessingPipeline):
     def __init__(self, pipeline_id):
         self.pipeline_id = pipeline_id
 
@@ -42,7 +51,7 @@ class JSONAdapter():
         pass
 
 
-class CSVAdapter():
+class CSVAdapter(ProcessingPipeline):
     def __init__(self, pipeline_id):
         self.pipeline_id = pipeline_id
 
@@ -50,7 +59,7 @@ class CSVAdapter():
         pass
 
 
-class StreamAdapter():
+class StreamAdapter(ProcessingPipeline):
     def __init__(self, pipeline_id):
         self.pipeline_id = pipeline_id
 
@@ -70,4 +79,12 @@ class NexusManager():
 
 
 if __name__ == '__main__':
-    pass
+    print('=== CODE NEXUS - ENTERPRISE PIPELINE SYSTEM ===')
+
+    input_class = InputStage()
+    input_dict: Dict[str, Union[str, float]] = {
+        "sensor": "temp",
+        "value": 23.5,
+        "unit": "C",
+    }
+    print(input_class.process(input_dict))
