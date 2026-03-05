@@ -1,3 +1,6 @@
+from alchemy.grimoire.spellbook import record_spell # noqa
+
+
 def validate_ingredients(ingredients: str) -> str:
 
     ingredients_list: list[str] = ingredients.split()
