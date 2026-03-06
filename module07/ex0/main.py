@@ -12,10 +12,7 @@ if __name__ == '__main__':
     print('\nPlaying Fire Dragon with 6 mana available:')
     print(f'Playable: {fire_dragon.is_playable(6)}')
 
-    game_state: dict = {
-        'effect': 'Creature summoned to battlefield',
-    }
-    print(f'Play result: {fire_dragon.play(game_state)}')
+    print(f'Play result: {fire_dragon.play({})}')
 
     print('\nFire Dragon attacks Goblin Warrior:')
     print(f"Attack result: {fire_dragon.attack_target('Goblin Warrior')}")

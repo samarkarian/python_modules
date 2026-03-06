@@ -14,6 +14,7 @@ class CreatureCardClass(CardClass):
     def play(self, game_state: dict) -> dict:
         game_state.update({'card_played': self.name})
         game_state.update({'mana_used': self.cost})
+        game_state.update({'effect': 'Creature summoned to battlefield'})
         return (game_state)
 
     def get_card_info(self) -> dict:

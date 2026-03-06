@@ -11,7 +11,6 @@ if __name__ == '__main__':
     fire_dragon = CreatureCardClass(
         'Fire Dragon', 5, 'Legendary', 7, 5
     )
-    dragon_effect: dict[str] = {'effect': 'Creature summoned to battlefield'}
 
     mana_crystal = ArtifactCardClass(
         'Mana Crystal', 2, 'Medium', 1, 'Permanent: +1 mana per turn'
@@ -39,11 +38,6 @@ if __name__ == '__main__':
     for card in card_list:
         card_drew = deck.draw_card()
         print(f'{card_drew.name} ({card_drew.type})')
-        if card_drew.name == 'Fire Dragon':
-            print(
-                f"Play result: '{card_drew.play(dragon_effect)}\n"
-            )
-        else:
-            print(f'Play result: {card_drew.play({})}\n')
+        print(f'Play result: {card_drew.play({})}\n')
 
     print('Polymorphism in action: Same interface, different card behaviors!')
