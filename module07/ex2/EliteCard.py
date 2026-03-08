@@ -7,11 +7,13 @@ from typing import Any
 class EliteCardClass(CardClass, CombatableClass, MagicalClass):
     def __init__(self, name: str, cost: int, rarity: str,
                  combat_type: str, attack_power: int,
-                 defense_power: int) -> None:
+                 defense_power: int, spell: str, mana: int) -> None:
         super().__init__(name, cost, rarity)
         self.combat_type = combat_type
         self.attack_power = attack_power
         self.defense_power = defense_power
+        self.spell = spell
+        self.mana = mana
 
     def attack(self, target) -> dict:
 
@@ -34,38 +36,63 @@ class EliteCardClass(CardClass, CombatableClass, MagicalClass):
         if damage_blocked < 0:
             damage_blocked = 0
         if damage_blocked > 0:
-            still_alive: bool = True
+            self.still_alive: bool = True
         else:
-            still_alive = False
+            self.still_alive = False
 
         defend_dict = {
             'defender': self.name,
             'damage_taken': incoming_damage,
             'damage_blocked': damage_blocked,
-            'still_alive': still_alive
+            'still_alive': self.still_alive
         }
         return (defend_dict)
 
     def get_combat_stats(self) -> dict:
-
-        self.attack_power: int = 5
-        arcane_warrior = EliteCardClass(
-            'Arcane Warrior', 5, 'Legendary', 'melee', self.attack_power, 7
-        )
-
         return (
-            arcane_warrior.attack('Enemy'),
-            arcane_warrior.defend(self.attack_power)
+            self.attack('Enemy'),
+            self.defend(self.attack_power)
         )
 
     def cast_spell(self, spell_name: str, targets: list) -> dict:
-        pass
+
+        cast_spell_dict: dict[Any] = {
+            'defender': spell_name,
+            'spell': 'Fireball',
+            'targets': targets,
+            'mana_used': self.cost
+        }
+        return (cast_spell_dict)
 
     def channel_mana(self, amount: int) -> dict:
-        pass
+
+        self.mana -= self.cost
+        self.mana += amount
+        if self.mana < 0:
+            self.mana = 0
+
+        channel_mana_dict: dict[Any] = {
+            'channeled': amount,
+            'total_mana': self.mana
+        }
+        return (channel_mana_dict)
 
     def get_magic_stats(self) -> dict:
-        pass
+        return (
+            self.cast_spell(self.name, ['Enemy1', 'Enemy2']),
+            self.channel_mana(3)
+        )
 
     def play(self, game_state: dict) -> dict:
-        pass
+
+        self.attack('Enemy')
+        self.defend(10)
+        self.cast_spell(self.name, ['Enemy1', 'Enemy2'])
+        self.channel_mana(1)
+
+        game_state = {
+            'card_play': self.name,
+            'is_alive': self.still_alive,
+            'mana_total': self.mana
+        }
+        return (game_state)

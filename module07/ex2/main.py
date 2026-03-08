@@ -33,11 +33,24 @@ if __name__ == '__main__':
 
     print('\nPlaying Arcane Warrior (Elite Card):\n')
     print('Combat phase:')
+    card_name: str = 'Arcane Warrior'
+    cost: int = 4
     attack_power: int = 5
+    defense_power: int = 7
+    mana: str = 8
     arcane_warrior = EliteCardClass(
-        'Arcane Warrior', 5, 'Legendary', 'melee', attack_power, 7
+        card_name, cost, 'Legendary', 'melee',
+        attack_power, defense_power, 'Fireball', mana
     )
     print(f"Attack result: {arcane_warrior.attack('Enemy')}")
     print(f'Defense result: {arcane_warrior.defend(attack_power)}')
 
-    print(arcane_warrior.get_combat_stats())
+    print('\nMagic phase:')
+    print(
+        "Spell cast: "
+        f"{arcane_warrior.cast_spell(card_name, ['Enemy1', 'Enemy2'])}"
+        "\nMana channel: "
+        f"{arcane_warrior.channel_mana(3)}"
+    )
+
+    print('\nMultiple interface implementation successful!')
