@@ -11,6 +11,9 @@ class CreatureCardClass(CardClass):
         self.health = health
         self.type: str = "Creature"
 
+    def __repr__(self):
+        return (f"{self.name} ({self.cost})")
+
     def play(self, game_state: dict) -> dict:
         game_state.update({'card_played': self.name})
         game_state.update({'mana_used': self.cost})

@@ -7,6 +7,9 @@ class SpellCardClass(CardClass):
         self.effect_type = effect_type
         self.type: str = "Spell"
 
+    def __repr__(self):
+        return (f"{self.name} ({self.cost})")
+
     def play(self, game_state: dict) -> dict:
         game_state.update({'card_played': self.name})
         game_state.update({'mana_used': self.cost})
