@@ -22,7 +22,7 @@ class TournamentPlatformClass():
         }
 
     def get_leaderboard(self) -> list:
-        return (self.cards)
+        return sorted(self.cards, key=lambda card: card.rating, reverse=True)
 
     def generate_tournament_report(self) -> dict:
 
@@ -32,9 +32,8 @@ class TournamentPlatformClass():
         else:
             status = 'inactive'
 
-        for card in self.cards:
-            self.avg_rating += card.rating
-        self.avg_rating /= len(self.cards)
+        total = sum(card.rating for card in self.cards)
+        self.avg_rating = int(total / len(self.cards))
 
         return {
             'total_cards': len(self.cards),

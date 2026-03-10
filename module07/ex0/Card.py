@@ -12,7 +12,15 @@ class CardClass(ABC):
         pass
 
     def get_card_info(self) -> dict:
-        pass
+        return {
+            'name': self.name,
+            'cost': self.cost,
+            'rarity': self.rarity,
+        }
 
     def is_playable(self, available_mana: int) -> bool:
-        pass
+
+        if available_mana >= self.cost:
+            return True
+        else:
+            return False

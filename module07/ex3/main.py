@@ -1,7 +1,6 @@
 from ex3.GameEngine import GameEngineClass
 from ex3.AggressiveStrategy import AggressiveStrategyClass
 from ex3.FantasyCardFactory import FantasyCardFactoryClass
-from typing import Any
 
 
 if __name__ == '__main__':
@@ -13,24 +12,21 @@ if __name__ == '__main__':
     print('Strategy: AggressiveStrategy')
 
     factory = FantasyCardFactoryClass()
-    hand: list[Any] = []
-
-    hand.append(factory.create_creature('dragon'))
-    hand.append(factory.create_creature('goblin'))
-    hand.append(factory.create_spell('fireball'))
-    hand.append(factory.create_artifact('mana_ring'))
+    strategy = AggressiveStrategyClass()
+    engine = GameEngineClass()
+    engine.configure_engine(factory, strategy)
 
     print(f'Available types: {factory.get_supported_types()}')
 
     print('\nSimulating aggressive turn...')
-    print(hand)
+    hand_display = ', '.join([f'{c.name} ({c.cost})' for c in engine.hand])
+    print(f'Hand: [{hand_display}]')
 
-    strategy = AggressiveStrategyClass()
-    engine = GameEngineClass()
-    engine.configure_engine(factory, strategy)
     result = engine.simulate_turn()
+
     print('\nTurn execution:')
     print(f"Strategy: {result['strategy']}")
+
     actions = {
         'cards_played': result['cards_played'],
         'mana_used': result['mana_used'],

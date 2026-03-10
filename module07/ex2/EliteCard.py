@@ -49,10 +49,10 @@ class EliteCardClass(CardClass, CombatableClass, MagicalClass):
         return (defend_dict)
 
     def get_combat_stats(self) -> dict:
-        return (
-            self.attack('Enemy'),
-            self.defend(self.attack_power)
-        )
+        return {
+            'attack': self.attack('Enemy'),
+            'defense': self.defend(self.attack_power)
+        }
 
     def cast_spell(self, spell_name: str, targets: list) -> dict:
 
@@ -78,10 +78,10 @@ class EliteCardClass(CardClass, CombatableClass, MagicalClass):
         return (channel_mana_dict)
 
     def get_magic_stats(self) -> dict:
-        return (
-            self.cast_spell(self.name, ['Enemy1', 'Enemy2']),
-            self.channel_mana(3)
-        )
+        return {
+            'spell': self.cast_spell(self.name, ['Enemy1', 'Enemy2']),
+            'mana': self.channel_mana(3)
+        }
 
     def play(self, game_state: dict) -> dict:
 

@@ -21,38 +21,35 @@ class TournamentCardClass(CardClass, CombatableClass, RankableClass):
         return (game_state)
 
     def attack(self, target) -> dict:
-        self.target = target
-        self.winner: str = ''
-        self.loser: str = ''
-        self.winner_rating: int = 0
-        self.loser_rating: int = 0
-        if self.rating > target.rating:
-            self.winner = self.name
+
+        won = self.rating > target.rating
+
+        if won:
             self.rating += 16
-            self.winner_rating = self.rating
-            self.loser = target.name
             target.rating -= 16
-            self.loser_rating = target.rating
             self.wins += 1
             target.losses += 1
+            winner = self.name
+            loser = target.name
         else:
-            self.winner = target.name
             target.rating += 16
-            self.winner_rating = target.rating
-            self.loser = self.name
             self.rating -= 16
-            self.loser_rating = self.rating
             target.wins += 1
             self.losses += 1
+            winner = target.name
+            loser = self.name
+
         return {
-            'winner': self.winner,
-            'loser': self.loser,
-            'winner_rating': self.winner_rating,
-            'loser_rating': self.loser_rating
+            'winner': winner,
+            'loser': loser,
+            'winner_rating': self.calculate_rating() if won
+            else target.calculate_rating(),
+            'loser_rating': target.calculate_rating() if won
+            else self.calculate_rating()
         }
 
     def calculate_rating(self) -> int:
-        return (self.winner_rating + self.loser_rating)
+        return (self.rating)
 
     def get_tournament_stats(self) -> dict:
         return {

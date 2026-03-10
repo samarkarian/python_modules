@@ -7,6 +7,8 @@ from ex2.EliteCard import EliteCardClass
 if __name__ == '__main__':
     print('\n=== DataDeck Ability System ===\n')
 
+    print("EliteCard capabilities:")
+
     card_class = (dir(CardClass))
     lst_card: list[str] = []
 
@@ -33,15 +35,18 @@ if __name__ == '__main__':
 
     print('\nPlaying Arcane Warrior (Elite Card):\n')
     print('Combat phase:')
+
     card_name: str = 'Arcane Warrior'
     cost: int = 4
     attack_power: int = 5
     defense_power: int = 7
-    mana: str = 8
+    mana: int = 8
+
     arcane_warrior = EliteCardClass(
         card_name, cost, 'Legendary', 'melee',
         attack_power, defense_power, 'Fireball', mana
     )
+
     print(f"Attack result: {arcane_warrior.attack('Enemy')}")
     print(f'Defense result: {arcane_warrior.defend(attack_power)}')
 

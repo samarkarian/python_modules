@@ -13,10 +13,15 @@ class SpellCardClass(CardClass):
         return (f"{self.name} ({self.cost})")
 
     def play(self, game_state: dict) -> dict:
+
         game_state.update({'card_played': self.name})
         game_state.update({'mana_used': self.cost})
         game_state.update({'effect': self.effect_type})
+
         return (game_state)
 
     def resolve_effect(self, targets: list) -> dict:
-        return {}
+        return {
+            'effect': self.effect_type,
+            'targets': targets,
+        }

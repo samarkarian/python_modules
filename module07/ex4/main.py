@@ -28,7 +28,9 @@ if __name__ == '__main__':
     print(f'Interfaces: {interfaces}')
     print(f'Rating: {fire_dragon.rating}')
     print(f'Record: {fire_dragon.wins}-{fire_dragon.losses}')
+
     print()
+
     print(f"{ice_wizard.name} (ID: {ice_wizard.card_id}):")
     print(f'Interfaces: {interfaces}')
     print(f'Rating: {ice_wizard.rating}')

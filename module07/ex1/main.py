@@ -33,7 +33,6 @@ if __name__ == '__main__':
     print(f'Deck stats: {deck.get_deck_stats()}')
 
     print('\nDrawing and playing cards:\n')
-    card_drew = deck.draw_card()
 
     for card in card_list:
         card_drew = deck.draw_card()

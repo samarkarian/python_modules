@@ -20,9 +20,26 @@ class DeckClass():
         random.shuffle(self.cards)
 
     def draw_card(self) -> CardClass:
-        return (random.choice(self.cards))
+
+        if not self.cards:
+            return None
+
+        card = random.choice(self.cards)
+        self.cards.remove(card)
+
+        return card
 
     def get_deck_stats(self) -> dict:
+
+        if not self.cards:
+            return {
+                'total_cards': 0,
+                'creatures': 0,
+                'spells': 0,
+                'artifacts': 0,
+                'avg_cost': 0,
+            }
+
         avg_cost: float = round(sum(
                     [card.cost for card in self.cards]
                 ) / len(self.cards), 2)

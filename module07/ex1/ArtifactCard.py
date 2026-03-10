@@ -15,10 +15,15 @@ class ArtifactCardClass(CardClass):
         return (f"{self.name} ({self.cost})")
 
     def play(self, game_state: dict) -> dict:
+
         game_state.update({'card_played': self.name})
         game_state.update({'mana_used': self.cost})
         game_state.update({'effect': self.effect})
+
         return (game_state)
 
     def activate_ability(self) -> dict:
-        return {}
+        return {
+            'effect': self.effect,
+            'durability_remaining': self.durability,
+        }

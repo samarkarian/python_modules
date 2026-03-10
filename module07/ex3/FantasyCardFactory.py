@@ -57,7 +57,12 @@ class FantasyCardFactoryClass(CardFactoryClass):
         return (artifact_card)
 
     def create_themed_deck(self, size: int) -> dict:
-        pass
+
+        deck: list[Any] = []
+        deck = self.creatures_list + self.spells_list + self.artifacts_list
+        size = len(deck)
+
+        return {'deck': deck, 'size': size}
 
     def get_supported_types(self) -> dict:
 
