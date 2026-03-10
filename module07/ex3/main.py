@@ -25,9 +25,6 @@ if __name__ == '__main__':
     print('\nSimulating aggressive turn...')
     print(hand)
 
-    print('\nTurn execution:')
-    print('Strategy: AggressiveStrategy')
-
     strategy = AggressiveStrategyClass()
     engine = GameEngineClass()
     engine.configure_engine(factory, strategy)

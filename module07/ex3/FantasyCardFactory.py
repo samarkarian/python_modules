@@ -9,7 +9,7 @@ from typing import Any
 
 class FantasyCardFactoryClass(CardFactoryClass):
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.creatures_list: list[Any] = []
         self.spells_list: list[Any] = []
         self.artifacts_list: list[Any] = []

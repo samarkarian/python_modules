@@ -21,7 +21,6 @@ class GameEngineClass():
         self._hand = [
             factory.create_creature('dragon'),
             factory.create_creature('goblin'),
-            factory.create_spell(),
         ]
         self._cards_created = len(self._hand)
 
