@@ -5,6 +5,7 @@ from typing import Any
 
 def check_dependencies(
         core_p: list[Any], optional_p: list[Any]) -> None:
+
     missing_core: bool = False
 
     for pkg in core_p:
@@ -28,6 +29,7 @@ def check_dependencies(
 
 
 def analyzing_data() -> None:
+
     import pandas as pd
     import numpy as np
     import matplotlib.pyplot as plt
@@ -41,14 +43,15 @@ def analyzing_data() -> None:
     y = pd.Series(array_y)
 
     plt.plot(x, y)
-    plt.savefig("analysis.png")
+    plt.savefig("matrix_analysis.png")
     print("Generating visualization...")
 
     print("\nAnalysis complete!")
-    print("Results saved to: matrix\\_analysis.png}")
+    print("Results saved to: matrix_analysis.png")
 
 
 if __name__ == '__main__':
+
     print("\nLOADING STATUS: Loading programs...\n")
     print("Checking dependencies:")
 
@@ -58,11 +61,3 @@ if __name__ == '__main__':
     check_dependencies(core_packages, optional_packages)
 
     analyzing_data()
-
-    print("\nInstalled package versions:")
-    for pkg in core_packages + optional_packages:
-        try:
-            mod = importlib.import_module(pkg)
-            print(f"{pkg}: {mod.__version__}")
-        except ImportError:
-            print(f"{pkg}: Not installed")
