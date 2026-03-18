@@ -56,8 +56,8 @@ def main() -> None:
     )
     try:
         data: AlienContact = AlienContact(
-            contact_id='AC_2024_001', timestamp=datetime.now().isoformat(),
-            location='Area 51, Nevada', contact_type='radio',
+            contact_id='AC_2024_001', timestamp=datetime.now(),
+            location='Area 51, Nevada', contact_type=ContactType.RADIO,
             signal_strength=8.5, duration_minutes=45,
             witness_count=5, message_received='Greetings from Zeta Reticuli'
         )
@@ -75,8 +75,8 @@ def main() -> None:
     print('\n========================================')
     try:
         data_false: AlienContact = AlienContact(
-            contact_id='AC_2024_001', timestamp=datetime.now().isoformat(),
-            location='Area 51, Nevada', contact_type='telepathic',
+            contact_id='AC_2024_001', timestamp=datetime.now(),
+            location='Area 51, Nevada', contact_type=ContactType.TELEPATHIC,
             signal_strength=8.5, duration_minutes=45,
             witness_count=2, message_received='Greetings from Zeta Reticuli',
             is_verified=True

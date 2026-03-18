@@ -41,7 +41,7 @@ def main() -> None:
         data = SpaceStation(
             station_id='ISS001', name='International Space Station',
             crew_size=6, power_level=85.5, oxygen_level=92.3,
-            last_maintenance=datetime.now().isoformat()
+            last_maintenance=datetime.now()
         )
         valid_station(data)
     except ValidationError as err:
@@ -52,7 +52,7 @@ def main() -> None:
         data = SpaceStation(
             station_id='ISS001', name='International Space Station',
             crew_size=26, power_level=85.5, oxygen_level=92.3,
-            last_maintenance=datetime.now().isoformat()
+            last_maintenance=datetime.now()
         )
         valid_station(data)
     except ValidationError as err:

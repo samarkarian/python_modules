@@ -76,21 +76,23 @@ def main() -> None:
     try:
         data = SpaceMission(
             mission_id='M2024_MARS', mission_name='Mars Colony Establishment',
-            destination='Mars', launch_date='2024-03-17T16:19:00',
+            destination='Mars', launch_date=datetime.now(),
             duration_days=900, budget_millions=2500.0,
             crew=[
                 CrewMember(
-                    member_id='SC0', name='Sarah Connor', rank='commander',
-                    age=25, specialization='Mission Command',
-                    years_experience=6
+                    member_id='SC0', name='Sarah Connor',
+                    rank=RankEnum.COMMANDER, age=25,
+                    specialization='Mission Command', years_experience=6
                 ),
                 CrewMember(
-                    member_id='JS1', name='John Smith', rank='lieutenant',
-                    age=28, specialization='Navigation', years_experience=8
+                    member_id='JS1', name='John Smith',
+                    rank=RankEnum.LIEUTENANT, age=28,
+                    specialization='Navigation', years_experience=8
                 ),
                 CrewMember(
-                    member_id='AJ2', name='Alice Johnson', rank='officer',
-                    age=32, specialization='Engineering', years_experience=17
+                    member_id='AJ2', name='Alice Johnson',
+                    rank=RankEnum.OFFICER, age=32,
+                    specialization='Engineering', years_experience=17
                 )
             ],
         )
@@ -116,21 +118,23 @@ def main() -> None:
     try:
         data = SpaceMission(
             mission_id='M2024_MARS', mission_name='Mars Colony Establishment',
-            destination='Mars', launch_date='2024-03-17T16:19:00',
+            destination='Mars', launch_date=datetime.now(),
             duration_days=900, budget_millions=2500.0,
             crew=[
                 CrewMember(
-                    member_id='SC0', name='Sarah Connor', rank='officer',
-                    age=25, specialization='Mission Command',
-                    years_experience=4
+                    member_id='SC0', name='Sarah Connor',
+                    rank=RankEnum.OFFICER, age=25,
+                    specialization='Mission Command', years_experience=4
                 ),
                 CrewMember(
-                    member_id='JS1', name='John Smith', rank='lieutenant',
-                    age=28, specialization='Navigation', years_experience=8
+                    member_id='JS1', name='John Smith',
+                    rank=RankEnum.LIEUTENANT, age=28,
+                    specialization='Navigation', years_experience=8
                 ),
                 CrewMember(
-                    member_id='AJ2', name='Alice Johnson', rank='officer',
-                    age=32, specialization='Engineering', years_experience=10
+                    member_id='AJ2', name='Alice Johnson',
+                    rank=RankEnum.OFFICER, age=32,
+                    specialization='Engineering', years_experience=10
                 )
             ],
         )
