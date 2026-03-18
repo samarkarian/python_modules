@@ -68,31 +68,29 @@ def main() -> None:
         print(f'Signal: {data.signal_strength}/10')
         print(f'Duration: {data.duration_minutes} minutes')
         print(f'Witnesses: {data.witness_count}')
-        print(f'Message: {data.message_received}')
+        print(f"Message: '{data.message_received}'")
     except ValidationError as err:
-        for error in err.errors():
-            print(error['msg'])
+        print(err.errors()[0]['msg'])
 
     print('\n========================================')
     try:
-        data: AlienContact = AlienContact(
-            contact_id='C_2024_001', timestamp=datetime.now().isoformat(),
-            location='Area 51, Nevada', contact_type='physical',
+        data_false: AlienContact = AlienContact(
+            contact_id='AC_2024_001', timestamp=datetime.now().isoformat(),
+            location='Area 51, Nevada', contact_type='telepathic',
             signal_strength=8.5, duration_minutes=45,
             witness_count=2, message_received='Greetings from Zeta Reticuli',
             is_verified=True
         )
         print('Valid contact report:\n')
-        print(f'ID: {data.contact_id}')
-        print(f'Type: {data.contact_type.value}')
-        print(f'Location: {data.location}')
-        print(f'Signal: {data.signal_strength}/10')
-        print(f'Duration: {data.duration_minutes} minutes')
-        print(f'Witnesses: {data.witness_count}')
-        print(f'Message: {data.message_received}')
+        print(f'ID: {data_false.contact_id}')
+        print(f'Type: {data_false.contact_type.value}')
+        print(f'Location: {data_false.location}')
+        print(f'Signal: {data_false.signal_strength}/10')
+        print(f'Duration: {data_false.duration_minutes} minutes')
+        print(f'Witnesses: {data_false.witness_count}')
+        print(f"Message: '{data_false.message_received}'")
     except ValidationError as err:
-        for error in err.errors():
-            print(error['msg'])
+        print(err.errors()[0]['msg'])
 
 
 if __name__ == "__main__":
