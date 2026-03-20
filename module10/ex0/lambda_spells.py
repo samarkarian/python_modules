@@ -37,8 +37,7 @@ def mage_stats(mages: list[dict]) -> dict:
     )
     max_power: int = int(max_int['power'])
 
-    sum_tuple: tuple = (min_power, max_power)
-    avg_power: float = float(sum(sum_tuple) / len(mages))
+    avg_power = sum(map(lambda x: x['power'], mages)) / len(mages)
 
     return {
         'max_power': max_power,
