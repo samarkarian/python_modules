@@ -1,4 +1,7 @@
-def mage_counter() -> callable:
+from typing import Callable, Any
+
+
+def mage_counter() -> Callable:
     counter: int = 0
 
     def counter_call() -> int:
@@ -10,7 +13,7 @@ def mage_counter() -> callable:
     return counter_call
 
 
-def spell_accumulator(initial_power: int) -> callable:
+def spell_accumulator(initial_power: int) -> Callable:
     total_pow: int = initial_power
 
     def counter_power(amount: int) -> int:
@@ -22,7 +25,7 @@ def spell_accumulator(initial_power: int) -> callable:
     return counter_power
 
 
-def enchantment_factory(enchantment_type: str) -> callable:
+def enchantment_factory(enchantment_type: str) -> Callable:
 
     def enchantment(enchantment_name: str) -> str:
         return f'{enchantment_type} {enchantment_name}'
@@ -30,13 +33,13 @@ def enchantment_factory(enchantment_type: str) -> callable:
     return enchantment
 
 
-def memory_vault() -> dict[str, callable]:
+def memory_vault() -> dict[str, Callable]:
     store_dict: dict = {}
 
-    def store(key: str, value: callable) -> None:
+    def store(key: str, value: Callable) -> None:
         store_dict[key] = value
 
-    def recall(key: str) -> dict[str, callable]:
+    def recall(key: str) -> Any:
         if key in store_dict:
             return store_dict[key]
         else:
@@ -51,29 +54,29 @@ def memory_vault() -> dict[str, callable]:
 def main():
     print("Testing mage counter...\n")
 
-    mc: callable = mage_counter()
+    mc: Callable = mage_counter()
     print(f'Call 1: {mc()}')
     print(f'Call 2: {mc()}')
     print(f'Call 3: {mc()}')
 
     print('\nTesting spell accumulator...\n')
 
-    sa: callable = spell_accumulator(3)
+    sa: Callable = spell_accumulator(3)
     print(f'Call 1: {sa(3)}')
     print(f'Call 2: {sa(2)}')
     print(f'Call 3: {sa(1)}')
 
     print('\nTesting enchantment factory...\n')
 
-    flaming: callable = enchantment_factory('Flaming')
+    flaming: Callable = enchantment_factory('Flaming')
     print(flaming('Sword'))
 
-    frozen: callable = enchantment_factory('Frozen')
+    frozen: Callable = enchantment_factory('Frozen')
     print(frozen('Shield'))
 
     print('\nTesting memory vault...\n')
 
-    memory: callable = memory_vault()
+    memory: Callable = memory_vault()
     memory["store"]("a", 10)
     print(memory["recall"]("a"))
     print(memory["recall"]("b"))

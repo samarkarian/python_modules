@@ -1,9 +1,10 @@
 from functools import wraps
 import time
 import random
+from typing import Callable
 
 
-def spell_timer(func: callable) -> callable:
+def spell_timer(func: Callable) -> Callable:
     @wraps(func)
     def wrapper(*args, **kwargs):
 
@@ -23,7 +24,7 @@ def fireball() -> str:
     return "Result: Fireball cast!"
 
 
-def power_validator(min_power: int) -> callable:
+def power_validator(min_power: int) -> Callable:
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
@@ -42,7 +43,7 @@ def spell_power(power: int) -> str:
     return f'{power} is a sufficient power for this spell'
 
 
-def retry_spell(max_attempts: int) -> callable:
+def retry_spell(max_attempts: int) -> Callable:
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):

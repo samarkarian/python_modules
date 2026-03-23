@@ -27,12 +27,12 @@ def spell_transformer(spells: list[str]) -> list[str]:
 
 def mage_stats(mages: list[dict]) -> dict:
 
-    min_int: list[dict] = min(
+    min_int: dict = min(
         mages, key=lambda x: x['power']
     )
     min_power: int = int(min_int['power'])
 
-    max_int: list[dict] = max(
+    max_int: dict = max(
         mages, key=lambda x: x['power']
     )
     max_power: int = int(max_int['power'])
@@ -97,7 +97,7 @@ def main() -> None:
         print(str(spell))
 
     print('\nTesting mage stats...\n')
-    stats: list[dict] = mage_stats(mages)
+    stats: dict = mage_stats(mages)
     print(
         f"Max power: {stats['max_power']}\n"
         f"Min power: {stats['min_power']}\n"

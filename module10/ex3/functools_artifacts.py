@@ -1,5 +1,6 @@
 from functools import reduce, partial, lru_cache, singledispatch
 import operator
+from typing import Callable
 
 
 def spell_reducer(spells: list[int], operation: str) -> int:
@@ -15,7 +16,7 @@ def spell_reducer(spells: list[int], operation: str) -> int:
         raise ValueError(f"'{operation}' is not valid")
 
 
-def partial_enchanter(base_enchantment: callable) -> dict[str, callable]:
+def partial_enchanter(base_enchantment: Callable) -> dict[str, Callable]:
 
     fire_enchant = partial(base_enchantment, 50, 'fire')
     ice_enchant = partial(base_enchantment, 50, 'ice')
@@ -35,7 +36,7 @@ def memoized_fibonacci(n: int) -> int:
     return memoized_fibonacci(n - 1) + memoized_fibonacci(n - 2)
 
 
-def spell_dispatcher() -> callable:
+def spell_dispatcher() -> Callable:
     @singledispatch
     def dispatch(x):
         return x
@@ -73,7 +74,7 @@ def main() -> None:
             f"{element} enchantment of power {power} on {target}"
         )
 
-    enchantments: callable = partial_enchanter(enchantment)
+    enchantments: dict[str, Callable] = partial_enchanter(enchantment)
     print(enchantments['fire_enchant'](target='Frog'))
     print(enchantments['ice_enchant'](target='Cat'))
     print(enchantments['lightning_enchant'](target='Dog'))
